@@ -1,0 +1,169 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "ERROR HUB",
+   Icon = 95410550601345,
+   LoadingTitle = "FILE NOT FOUND",
+   LoadingSubtitle = "Para minha princesa (mateus1239117)",
+   ShowText = "404",
+   Theme = "Amethyst",
+
+   ToggleUIKeybind = "L",
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false,
+
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil,
+      FileName = "ERROR HUB"
+   },
+
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
+   },
+
+   KeySystem = true,
+   KeySettings = {
+      Title = "Calma ai paizão",
+      Subtitle = "Insira a chave",
+      Note = "Pegue a chave comigo no discord",
+      FileName = "ERROR HUB key",
+      SaveKey = false,
+      GrabKeyFromSite = false,
+      Key = {"Nightmare best waifu"}
+   }
+})
+
+local MainTab = Window:CreateTab("Principal", 4483362458)
+local ShopTab = Window:CreateTab("Shop", 4483362458)
+local MiscTab = Window:CreateTab("Misc", 4483362458)
+
+local Section = MainTab:CreateSection("Infinite Yield")
+
+local Button = MainTab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Section = ShopTab:CreateSection("Gacha Skin")
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Spin",
+   CurrentValue = false,
+   Flag = "Gacha Skin 1",
+   Callback = function(Value)
+      RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "1Spin" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaSkins"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Lucky Spin",
+   CurrentValue = false,
+   Flag = "Gacha Lucky Skin",
+   Callback = function(Value)
+      RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "1SpinLucky" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaSkins"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Spin 10",
+   CurrentValue = false,
+   Flag = "Gacha Skin 10",
+   Callback = function(Value)
+      RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "10Spins" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaSkins"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
+
+local Section = ShopTab:CreateSection("Gacha characters")
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Spin",
+   CurrentValue = false,
+   Flag = "Gacha Character 1",
+   Callback = function(Value)
+     RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "1Spin" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaCharacter"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Lucky Spin",
+   CurrentValue = false,
+   Flag = "Gacha Lucky Character",
+   Callback = function(Value)
+     RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "1SpinLucky" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaCharacter"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
+
+local RemoteToggleEnabled = false
+local Toggle = ShopTab:CreateToggle({
+   Name = "Auto Spin 10",
+   CurrentValue = false,
+   Flag = "Gacha Character 10",
+   Callback = function(Value)
+     RemoteToggleEnabled = Value
+   end})
+
+task.spawn(function()
+    while true do
+        if RemoteToggleEnabled then
+        local args = { "10Spins" }
+        game:GetService("ReplicatedStorage"):WaitForChild("GachaCharacter"):FireServer(unpack(args))
+        end
+        task.wait()
+    end
+end)
