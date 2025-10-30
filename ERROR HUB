@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://github.com/NeoMitsui/ERROR-404/blob/main/Rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "ERROR HUB",
