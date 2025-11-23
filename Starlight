@@ -1,0 +1,236 @@
+local Starlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Starlight-Interface-Suite/refs/heads/master/Source.lua"))()  
+
+local NebulaIcons = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Nebula-Icon-Library/master/Loader.luau"))() --loads modules that allow 100% support for Lucide and Material Icons
+
+local Window = Starlight:CreateWindow({
+    Name = "ERROR HUB",
+    Subtitle = "Welcome",
+    Icon = 111319436245213, -- Replace with your icon ID
+
+    LoadingSettings = {
+        Title = "Loading",
+        Subtitle = "Thanks for using my hub",
+    },
+
+    FileSettings = {
+        ConfigFolder = "ERROR HUB starlight"
+    },
+    
+    NotifyOnCallbackError = true,
+})
+
+------------------------------------------------------------------------------------------------------------------------------
+
+local PrincipalS = Window:CreateTabSection("Main")
+
+------------------------------------------------------------------------------------------------------------------------------
+
+local MainTab = PrincipalS:CreateTab({
+    Name = "Main",
+    Icon = NebulaIcons:GetIcon('house', 'Lucide'),
+    Columns = 2,
+}, "Seção principal")
+local CharTab = PrincipalS:CreateTab({
+    Name = "Characters",
+    Icon = NebulaIcons:GetIcon('drama', 'Lucide'),
+    Columns = 3,
+}, "Seção de personagens")
+local ShopTab = PrincipalS:CreateTab({
+    Name = "Shop",
+    Icon = NebulaIcons:GetIcon('shopping_cart', 'Material'),
+    Columns = 2,
+}, "Seção da loja")
+local TestTab = PrincipalS:CreateTab({
+    Name = "Testing",
+    Icon = NebulaIcons:GetIcon('radiation', 'Lucide'),
+    Columns = 1,
+}, "Zona de testes")
+
+------------------------------------------------------------------------------------------------------------------------------
+
+local Util = MainTab:CreateGroupbox({
+    Name = "Useful Scripts",
+    Icon = NebulaIcons:GetIcon('file', 'Lucide'),
+    Column = 1,
+}, "Utilitários")
+
+local PlayerS = MainTab:CreateGroupbox({
+    Name = "Player Scripts",
+    Icon = NebulaIcons:GetIcon('user', 'Lucide'),
+    Column = 2,
+}, "Player Script")
+
+local Button = Util:CreateButton({
+    Name = "Infinite Yield",
+    Icon = NebulaIcons:GetIcon('refresh-cw', 'Lucide'),
+    Tooltip = "Reseta seu personagem tanto para reviver quanto para trocar de personagem!",
+    Style = 1,
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end,
+}, "Infinite yield")
+
+------------------------------------------------------------------------------------------------------------------------------
+
+local CharSmall = CharTab:CreateGroupbox({
+    Name = "Characters",
+    Icon = NebulaIcons:GetIcon('user-round-minus', 'Lucide'),
+    Column = 1,
+}, "small characters")
+
+local CharLarge = CharTab:CreateGroupbox({
+    Name = "Larges",
+    Icon = NebulaIcons:GetIcon('user-round-plus', 'Lucide'),
+    Column = 2,
+}, "large characters")
+
+local CharMutant = CharTab:CreateGroupbox({
+    Name = "Striders etc",
+    Icon = NebulaIcons:GetIcon('dna', 'Lucide'),
+    Column = 3,
+}, "striders, helicopters and mutants")
+
+
+local Button = CharMutant:CreateButton({
+    Name = "Reset",
+    Icon = NebulaIcons:GetIcon('refresh-cw', 'Lucide'),
+    Tooltip = "Resets your character!",
+    Style = 1,
+    IndicatorStyle = 1,
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer
+        local humanoid = Player.Character and Player.Character:FindFirstChildWhichIsA("Humanoid")
+        if replicatesignal then
+            replicatesignal(Player.Kill)
+        elseif humanoid then
+            humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+        else
+            Player.Character:BreakJoints()
+        end
+    end,
+}, "Resetar")
+
+local InfoReset = CharMutant:CreateParagraph({
+    Name = "important",
+    Content = [[Uses of reset:
+    -REVIVE YOURSELF WHEN DOWNED
+    -REPLACE CHARACTERS MID-MATCH
+    ]]
+
+}, "Informacões do reset")
+
+local Toggle = CharMutant:CreateToggle({
+    Name = "Auto Cinema",
+    CurrentValue = false,
+    Style = 1,
+    CheckboxIcon = NebulaIcons:GetIcon('check', 'Lucide'),
+    Callback = function(Value)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local ChangeToCinema = ReplicatedStorage.ChangeToCinema
+        while value do
+            task.wait(2)
+        ChangeToCinema:FireServer()
+        end
+    end,
+}, "Absolute cinema")
+
+------------------------------------------------------------------------------------------------------------------------------
+
+local TestGroupBox = TestTab:CreateGroupbox({
+    Name = "Teste",
+    Column = 1,
+}, "Área de testes")
+
+local Checkbox = TestGroupBox:CreateToggle({
+    Name = "Checkbox",
+    CurrentValue = false,
+    Style = 2,
+    Callback = function(Value)
+        print("Checkbox =", Value)
+    end,
+}, "INDEX")
+
+local Slider = TestGroupBox:CreateSlider({
+    Name = "Slider",
+    Icon = NebulaIcons:GetIcon('bar-chart', 'Lucide'),
+    Range = {0, 100},
+    Increment = 1,
+    Callback = function(v)
+        print("Slider Val =", v)
+    end,
+}, "INDEX")
+
+
+local Input = TestGroupBox:CreateInput({
+    Name = "Dynamic Input",
+    Icon = NebulaIcons:GetIcon('text-cursor-input', 'Lucide'),
+    CurrentValue = "",
+    PlaceholderText = "Placeholder Text",
+    Callback = function(Text)
+            print("Current Text =", Text)
+    end,
+}, "INDEX")
+
+
+local Label = TestGroupBox:CreateButton({
+    Name = "Label"
+}, "INDEX")
+
+local Paragraph = TestGroupBox:CreateParagraph({
+    Name = "Paragraph",
+    Content = [[Content of your paragraph goes here. Lorem Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet. Lorem. Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet. 
+
+    Also Supports Multi Lining
+    ]]
+
+}, "INDEX")
+
+local KeyLabel = TestGroupBox:CreateButton({
+    Name = "Keybind"
+}, "INDEX")
+local Bind = KeyLabel:AddBind({
+    HoldToInteract = false,
+    CurrentValue = "Q",
+    Callback = function(v)
+    print("Keybind =", v)
+    end,
+}, "INDEX")
+
+
+local DLabel = TestGroupBox:CreateButton({
+    Name = "Regular Dropdown"
+}, "INDEX")
+local Dropdown = DLabel:AddDropdown({
+    Options = {"Option 1", "Option 2"},
+    CurrentOptions = {"Option 1"},
+    Callback = function(Options)
+        print("Option =", Options)
+    end,
+}, "INDEX")
+
+
+local PLabel = TestGroupBox:CreateButton({
+    Name = "Player Dropdown"
+}, "INDEX")
+
+local PlayersDropdown = PLabel:CreateDropdown({
+    Options = {},
+    CurrentOptions = {},
+    Special = 1, -- Optional flag if supported by the UI library
+    Callback = function(Selected)
+        print("Selected Player:", Selected)
+    end,
+}, "INDEX")
+
+
+local TLabel = TestGroupBox:CreateButton({
+    Name = "Team Dropdown"
+}, "INDEX")
+
+local Dropdown = TLabel:AddDropdown({
+    Options = {},
+    CurrentOptions = {},
+    Callback = function(v)
+        print("Team Selected:", v)
+    end,
+}, "INDEX")
